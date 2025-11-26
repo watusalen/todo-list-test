@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Task } from '../model/entities/task';
-import { TaskService } from '../model/service/taskService';
+import { TaskService } from '../model/service/TaskService';
 
 export interface UseTasksState {
   tasks: Task[];
@@ -24,8 +24,10 @@ export function useTasks(taskService: TaskService): UseTasksState & UseTasksActi
     setError(null);
     try {
       const data = await taskService.getAllTasks();
+      console.log('Tasks carregadas:', data.length);
       setTasks(data);
     } catch (err) {
+      console.error('Erro ao carregar tasks:', err);
       setError('Erro ao carregar as tarefas');
     } finally {
       setLoading(false);

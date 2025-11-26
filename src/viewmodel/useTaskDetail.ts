@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Task } from '../model/entities/task';
-import { TaskService } from '../model/service/taskService';
+import { TaskService } from '../model/service/TaskService';
 
 export interface UseTaskDetailState {
   task: Task | null;
@@ -54,7 +54,7 @@ export function useTaskDetail(taskService: TaskService, taskId?: number): UseTas
       setError('Nenhuma tarefa carregada');
       return;
     }
-    
+
     setLoading(true);
     setError(null);
     try {

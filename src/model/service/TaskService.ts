@@ -1,5 +1,5 @@
 import { Task } from "../entities/task";
-import { Repository } from "../repository/TaskRepository";
+import { Repository, taskRepository } from "../repository/TaskRepository";
 
 export class TaskService {
     private repository: Repository;
@@ -74,3 +74,5 @@ export class TaskService {
         return allTasks.filter(task => !task.completed);
     }
 }
+
+export const taskServiceLocal: TaskService = new TaskService(taskRepository);
