@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Task } from '../model/entities/task';
-import { TaskService } from '../model/service/TaskService';
+import { ITaskService } from '../model/service/ITaskService';
 
 export interface UseTaskDetailState {
   task: Task | null;
@@ -14,7 +14,7 @@ export interface UseTaskDetailActions {
   deleteTask: () => Promise<void>;
 }
 
-export function useTaskDetail(taskService: TaskService, taskId?: number): UseTaskDetailState & UseTaskDetailActions {
+export function useTaskDetail(taskService: ITaskService, taskId?: number): UseTaskDetailState & UseTaskDetailActions {
   const [task, setTask] = useState<Task | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

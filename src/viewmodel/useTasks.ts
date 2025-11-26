@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Task } from '../model/entities/task';
-import { TaskService } from '../model/service/TaskService';
+import { ITaskService } from '../model/service/ITaskService';
 
 export interface UseTasksState {
   tasks: Task[];
@@ -14,7 +14,7 @@ export interface UseTasksActions {
   toggleComplete: (id: number) => Promise<void>;
 }
 
-export function useTasks(taskService: TaskService): UseTasksState & UseTasksActions {
+export function useTasks(taskService: ITaskService): UseTasksState & UseTasksActions {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

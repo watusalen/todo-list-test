@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TaskService } from '../model/service/TaskService';
+import { ITaskService } from '../model/service/ITaskService';
 
 export interface UseTaskCreateState {
   loading: boolean;
@@ -12,7 +12,7 @@ export interface UseTaskCreateActions {
   reset: () => void;
 }
 
-export function useTaskCreate(taskService: TaskService): UseTaskCreateState & UseTaskCreateActions {
+export function useTaskCreate(taskService: ITaskService): UseTaskCreateState & UseTaskCreateActions {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);

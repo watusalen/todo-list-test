@@ -1,10 +1,12 @@
 import { Task } from "../entities/task";
-import { Repository, taskRepository } from "../repository/TaskRepository";
+import { IRepository } from "../repository/ITaskRepository";
+import { localTaskRepository } from "../repository/LocalTaskRepository";
+import { ITaskService } from "./ITaskService";
 
-export class TaskService {
-    private repository: Repository;
+export class TaskService implements ITaskService {
+    private repository: IRepository;
 
-    constructor(repository: Repository) {
+    constructor(repository: IRepository) {
         this.repository = repository;
     }
 
@@ -30,7 +32,7 @@ export class TaskService {
             description: description.trim(),
             completed: false
         };
-        
+
         await this.repository.save(task);
     }
 
@@ -41,15 +43,15 @@ export class TaskService {
         if (!task.description || task.description.trim() === "") {
             throw new Error("Tarefa sem descrição.");
         }
-        
+
         await this.repository.findById(task.id);
-        
+
         const updatedTask: Task = {
             ...task,
             title: task.title.trim(),
             description: task.description.trim()
         };
-        
+
         await this.repository.update(updatedTask);
     }
 
@@ -75,4 +77,4 @@ export class TaskService {
     }
 }
 
-export const taskServiceLocal: TaskService = new TaskService(taskRepository);
+export const localTarkService: TaskService = new TaskService(localTaskRepository);

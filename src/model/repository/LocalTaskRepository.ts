@@ -1,14 +1,7 @@
 import { Task } from "../entities/task";
+import { IRepository } from "./ITaskRepository";
 
-export interface Repository {
-    findAll(): Promise<Array<Task>>;
-    findById(id: number): Promise<Task>;
-    save(task: Task): Promise<void>;
-    update(task: Task): Promise<void>;
-    delete(id: number): Promise<void>;
-}
-
-export class LocalRepository implements Repository {
+export class LocalRepository implements IRepository {
     private tasks: Array<Task>;
     private nextId: number;
 
@@ -50,4 +43,4 @@ export class LocalRepository implements Repository {
 
 }
 
-export const taskRepository: Repository = new LocalRepository();
+export const localTaskRepository: IRepository = new LocalRepository();
