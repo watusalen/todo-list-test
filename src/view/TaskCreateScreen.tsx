@@ -12,7 +12,7 @@ import {
     View,
 } from 'react-native';
 
-import { localTarkService } from '../model/service/TaskService';
+import { localTaskService } from '../model/service/TaskService';
 import { useTaskCreate } from '../viewmodel/useTaskCreate';
 import { useAppTheme } from './theme/ThemeContext';
 import { AppTheme } from './theme/themes';
@@ -25,7 +25,7 @@ export default function TaskCreateScreen({ navigation }: TaskCreateScreenProps) 
   const [description, setDescription] = useState('');
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const { loading, error, success, createTask, reset } = useTaskCreate(localTarkService);
+  const { loading, error, success, createTask, reset } = useTaskCreate(localTaskService);
   const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
